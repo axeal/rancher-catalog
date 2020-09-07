@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "json-exporter.fullname" . }}
+  labels:
+    app: {{ template "json-exporter.name" . }}
+#    chart: {{ template "json-exporter.chart" . }}
+    release: {{ .Release.Name }}
+#    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "json-exporter.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      annotations:
+{{ toYaml .Values.annotations | indent 8 }}
+      labels:
+        app: {{ template "json-exporter.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - args:
+            - {{ .Values.jsonEndpoint }}
+            - /cm-json-exporter
+          name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: json-port
+              containerPort: 7979
+              protocol: TCP
+          volumes:
+            - mountPath: /
+              configMap:
+                name: cm-json-exporter
+          livenessProbe:
+            httpGet:
+              path: /
+              port: json-port
+          readinessProbe:
+            httpGet:
+              path: /
+              port: json-port
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

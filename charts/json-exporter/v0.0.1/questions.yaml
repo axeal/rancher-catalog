@@ -1,0 +1,11 @@
+questions:
+- variable: replicaCount
+  default: 3
+  description: "Number of replicas"
+  type: int
+  required: true
+
+- variable: jsonEndpoint
+  description: "The endpoint that provides a json data file"
+  type: string
+  required: true

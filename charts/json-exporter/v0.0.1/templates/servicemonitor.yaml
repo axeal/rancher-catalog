@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: "json-exporter-servicemonitor"
+  labels:
+    app: {{ template "json-exporter.name" . }}
+#    chart: {{ template "json-exporter.chart" . }}
+    release: prometheus
+#    heritage: {{ .Release.Service }}
+spec:
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app: {{ template "json-exporter.name" . }}
+      release: {{ .Release.Name }}
+  endpoints:
+  - port: http
+    interval: {{ .Values.prometheus.serviceMonitor.interval }}
+    {{- if .Values.prometheus.serviceMonitor.scrapeTimeout }}
+    scrapeTimeout: {{ .Values.prometheus.serviceMonitor.scrapeTimeout }}
+    {{- end }}
