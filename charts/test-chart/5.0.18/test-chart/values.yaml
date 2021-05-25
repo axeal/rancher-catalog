@@ -1,0 +1,130 @@
+#######################################################
+# Default values for infocus WL.                      #
+# Declare variables to be passed into your templates. #
+#######################################################
+
+# Settings for access to the image registry
+registry:
+  url: adesso-infocusng-dev01.test-server.ag:4567
+#  username: infocusng-techuser
+#  password: <PASSWORD>
+  email: infocusng-techuser@adesso.de
+
+# Settings for rook (if used)
+rook:
+  active: true
+  filesystemname: infocus-fs
+
+# Settings for the admin portal deployment
+admin_portal:
+  debug: false
+  image: /infocusng/infocus-admin/admin-webapp:5.0.12
+  image_pull_policy: Always
+  image_pull_secret: adesso-infocusng-secret
+  replicas: 2
+  #nodeport: 30005
+  active_profiles: ci,wl
+  json_logging: true
+  resources:
+    requests:
+      cpu: 500m
+      memory: 4096Mi
+    limit:
+      cpu: 2000m
+      memory: 8192Mi
+  readinessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 6
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 200
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 2
+    successThreshold: 1
+      
+# Settings for the customer portal deployment
+customer_portal:
+  debug: false
+  image: /infocusng/infocus-customerportal-wl/westlotto-web-mvc:5.0.12
+  image_pull_policy: Always
+  image_pull_secret: adesso-infocusng-secret
+  replicas: 2
+  #nodeport: 30120
+  json_logging: true
+  anonymous_customer:
+    email: nela1@wl-infocus-inttest.adesso.de
+    password: nela1@wl-infocus-inttest.adesso.de
+  cms_path: /cms
+  resources:
+    requests:
+      cpu: 500m
+      memory: 4096Mi
+    limit:
+      cpu: 2000m
+      memory: 8192Mi
+  readinessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 20
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 200
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 20
+    successThreshold: 1
+
+# Settings for the onlinelose_b2b deployment
+onlinelose_b2b:
+  image: /infocusng/onlinelose-b2b-service:5.0.12
+  image_pull_policy: Always
+  image_pull_secret: adesso-infocusng-secret
+  replicas: 2
+  #nodeport: 30140
+  json_logging: true
+  resources:
+    requests:
+      cpu: 500m
+      memory: 4096Mi
+    limit:
+      cpu: 2000m
+      memory: 8192Mi
+  readinessProbe:
+    initialDelaySeconds: 120
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 6
+    successThreshold: 1
+  livenessProbe:
+    initialDelaySeconds: 200
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 2
+    successThreshold: 1
+
+# Settings for the NGINX web server
+webserver:
+  image: nginx:1.19.3
+  replicas: 2
+  probe_resource: /technisches/layout/bilder/favicons/favicon.ico
+  resources:
+    limit:
+      cpu: 2000m
+      memory: 8192Mi
+  #nodeport: xxxxx
+
+# Connections to core zone
+core_delegation:
+  namespace: infocusng
+keycloak:
+  external_url: http://keycloak:8080/auth/
+kernel:
+  name: kernel
+  internal_url: kernel.infocus-core
+redis:
+  masterGroupName: mymaster
+  sentinel_nodes: infocus-core-infocus-redis-ha:26379

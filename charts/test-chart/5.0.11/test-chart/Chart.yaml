@@ -1,0 +1,6 @@
+apiVersion: v2
+appVersion: 5.0.12
+description: Test Chart
+name: test-chart
+type: application
+version: 5.0.12
