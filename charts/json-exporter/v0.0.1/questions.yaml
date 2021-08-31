@@ -95,31 +95,30 @@ questions:
   required: true
   type: boolean
   default: "true"
-  subquestions:
-  - variable: se-rabbitmq.rabbitmq.ingress.tlsEnabled
-    description: "TLS enabled"
-    label: rabbitmq Ingress TLS enabled
-    group: "rabbitmq Ingress Settings"
-    show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
-    required: true
-    type: boolean
-    default: "true"
-  - variable: se-rabbitmq.rabbitmq.ingress.secretName
-    description: "secretName"
-    label: rabbitmq secretName
-    group: "rabbitmq Ingress Settings"
-    show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
-    required: true
-    type: string
-    default: "rabbitmq-tls-secret"
-  - variable: se-rabbitmq.rabbitmq.ingress.certManager
-    description: "certManager enabled"
-    label: rabbitmq certManager enabled
-    group: "rabbitmq Ingress Settings"
-    show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
-    required: true
-    type: boolean
-    default: "false"
+- variable: se-rabbitmq.rabbitmq.ingress.tlsEnabled
+  description: "TLS enabled"
+  label: rabbitmq Ingress TLS enabled
+  group: "rabbitmq Ingress Settings"
+  show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
+  required: true
+  type: boolean
+  default: "true"
+- variable: se-rabbitmq.rabbitmq.ingress.secretName
+  description: "secretName"
+  label: rabbitmq secretName
+  group: "rabbitmq Ingress Settings"
+  show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
+  required: true
+  type: string
+  default: "rabbitmq-tls-secret"
+- variable: se-rabbitmq.rabbitmq.ingress.certManager
+  description: "certManager enabled"
+  label: rabbitmq certManager enabled
+  group: "rabbitmq Ingress Settings"
+  show_if: "se-rabbitmq.rabbitmq.ingress.enabled=true"
+  required: true
+  type: boolean
+  default: "false"
 
 # For InfluxDB Chart
 - variable: global.localhistorian.apps.influxdbEnabled
