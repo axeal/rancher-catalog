@@ -90,7 +90,6 @@ questions:
 - variable: se-rabbitmq.rabbitmq.ingress.enabled
   description: "Ingress enabled"
   label: rabbitmq Ingress enabled
-  show_subquestion_if: true
   group: "rabbitmq Ingress Settings"
   show_if: "global.localhistorian.apps.rabbitmqEnabled=true"
   required: true
@@ -101,7 +100,7 @@ questions:
     description: "TLS enabled"
     label: rabbitmq Ingress TLS enabled
     group: "rabbitmq Ingress Settings"
-    show_if: "global.localhistorian.apps.rabbitmqEnabled=true"
+    show_if: "se-rabbitmq.rabbitmq.ingress.enabled"
     required: true
     type: boolean
     default: "true"
@@ -109,7 +108,7 @@ questions:
     description: "secretName"
     label: rabbitmq secretName
     group: "rabbitmq Ingress Settings"
-    show_if: "global.localhistorian.apps.rabbitmqEnabled=true"
+    show_if: "se-rabbitmq.rabbitmq.ingress.enabled"
     required: true
     type: string
     default: "rabbitmq-tls-secret"
@@ -117,7 +116,7 @@ questions:
     description: "certManager enabled"
     label: rabbitmq certManager enabled
     group: "rabbitmq Ingress Settings"
-    show_if: "global.localhistorian.apps.rabbitmqEnabled=true"
+    show_if: "se-rabbitmq.rabbitmq.ingress.enabled"
     required: true
     type: boolean
     default: "false"
