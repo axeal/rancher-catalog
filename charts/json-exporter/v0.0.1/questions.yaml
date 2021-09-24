@@ -1,25 +1,19 @@
 # Global For All charts
-questions:
-- variable: ingress-enabled
-  description: "Ingress enabled"
-  label: rabbitmq Ingress enabled
-  show_subquestion_if: true
-  group: "rabbitmq Ingress Settings"
-  type: boolean
+- variable: defaultImage
   default: true
+  description: "Use default Datadog image or specify a custom one"
+  label: Use Default Datadog Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
   subquestions:
-  - variable: se-rabbitmq.rabbitmq.ingress.tlsEnabled
-    description: "TLS enabled"
-    label: rabbitmq Ingress TLS enabled
-    type: boolean
-    default: true
-  - variable: se-rabbitmq.rabbitmq.ingress.secretName
-    description: "secretName"
-    label: rabbitmq secretName
+  - variable: agents.image.repository
+    default: "datadog/agent"
+    description: "Datadog image name"
     type: string
-    default: "rabbitmq-tls-secret"
-  - variable: se-rabbitmq.rabbitmq.ingress.certManager
-    description: "certManager enabled"
-    label: rabbitmq certManager enabled
-    type: boolean
-    default: false
+    label: Datadog Image Name
+  - variable: agents.image.tag
+    default: "7.21.1"
+    description: "Datadog Image Tag"
+    type: string
+    label: Datadog Image Tag
