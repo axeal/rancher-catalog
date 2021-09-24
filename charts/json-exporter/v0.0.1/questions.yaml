@@ -5,7 +5,6 @@ questions:
   label: rabbitmq Ingress enabled
   show_subquestion_if: true
   group: "rabbitmq Ingress Settings"
-  required: true
   type: boolean
   default: true
   subquestions:
