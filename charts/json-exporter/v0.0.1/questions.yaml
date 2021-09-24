@@ -95,7 +95,7 @@ questions:
   show_if: "global.localhistorian.apps.rabbitmqEnabled=true"
   required: true
   type: boolean
-  default: "true"
+  default: true
   subquestions:
   - variable: se-rabbitmq.rabbitmq.ingress.tlsEnabled
     description: "TLS enabled"
