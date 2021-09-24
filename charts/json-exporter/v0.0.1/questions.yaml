@@ -1,6 +1,6 @@
 # Global For All charts
 questions:
-- variable: se-rabbitmq.rabbitmq.ingress.enabled
+- variable: enabled
   default: true
   description: "Use default Datadog image or specify a custom one"
   label: Use Default Datadog Image
