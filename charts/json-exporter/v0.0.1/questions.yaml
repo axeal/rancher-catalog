@@ -1,6 +1,6 @@
 # Global For All charts
 questions:
-- variable: se-rabbitmq.rabbitmq.ingress.enabled
+- variable: ingress-enabled
   description: "Ingress enabled"
   label: rabbitmq Ingress enabled
   show_subquestion_if: true
