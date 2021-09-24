@@ -6,7 +6,7 @@ questions:
   label: Use Default Datadog Image
   type: boolean
   show_subquestion_if: true
-  group: "Container Images"
+  group: "rabbitmq Ingress Settings"
   subquestions:
   - variable: agents.image.repository
     default: "datadog/agent"
