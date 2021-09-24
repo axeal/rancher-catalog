@@ -12,18 +12,15 @@ questions:
   - variable: se-rabbitmq.rabbitmq.ingress.tlsEnabled
     description: "TLS enabled"
     label: rabbitmq Ingress TLS enabled
-    required: true
     type: boolean
     default: true
   - variable: se-rabbitmq.rabbitmq.ingress.secretName
     description: "secretName"
     label: rabbitmq secretName
-    required: true
     type: string
     default: "rabbitmq-tls-secret"
   - variable: se-rabbitmq.rabbitmq.ingress.certManager
     description: "certManager enabled"
     label: rabbitmq certManager enabled
-    required: true
     type: boolean
     default: false
